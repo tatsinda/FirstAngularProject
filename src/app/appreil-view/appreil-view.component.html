@@ -1,0 +1,31 @@
+<div class="col-xs-12">
+  <h2 >Mes appareils</h2>
+  <!-- utilisation des Peps(dans ce cas au niveau le pipe date) afin de mieux modifier l'affichage des donnee
+  on utilise aussi le pipe async pour une communication asnchrone avec un serveur de donee
+  <p >Mis a jour : {{lastUpdate | async | date: 'short' | uppercase }}</p>-->
+  <p >Mis a jour : {{lastUpdate | date: 'short' | uppercase }}</p>
+  <ul class="list-group">
+    <!--on fait une liaison par propritee
+    <app-appareil [appareilName]="appareilOne" [appareilStatus]="'eteint'" ></app-appareil>
+    <app-appareil [appareilName]="appareilTwo" [appareilStatus]="'allumer'" ></app-appareil>
+    <app-appareil [appareilName]="appareilThree" [appareilStatus]="'eteint'" ></app-appareil>
+    -->
+    <!--on utilise *ngFor pour faire une boucle et on recupere l'index-->
+    <app-appareil *ngFor="let appareil of appareils; let i = index"
+                  [indexofAppareil]="i"
+                  [appareilName]="appareil.name"
+                  [appareilStatus]="appareil.status" ></app-appareil>
+
+
+  </ul>
+  <!-- on lie le bouton a une propriete du ts. pour qu'il se desactive ou s'active-->
+  <!-- on lie le bouton a un evenement du template puis on le gere avec la methode onAllumer(()-->
+  <button class="b tn btn-success"
+          [disabled] ="!isAuth"
+          (click) ="onAllumer()" >Tout alumer</button>
+
+  <button class="b tn btn-danger"
+          [disabled] ="!isAuth"
+          (click) ="onEteindre()" >Tout eteindre</button>
+
+</div>

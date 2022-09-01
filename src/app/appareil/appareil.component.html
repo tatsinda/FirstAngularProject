@@ -1,0 +1,18 @@
+<!-- utilisaton de ngClass pour changer le fond de l'item en foncton des condition donnee-->
+<li [ngClass]="{'list-group-item': true,
+               'list-group-item-success': appareilStatus === 'allumer',
+               'list-group-item-danger': appareilStatus === 'eteint' }">
+<!-- utilisation de la directive ngIf pour une condition-->
+  <div style="width:20px;height:20px;background-color:red; "
+  *ngIf="appareilStatus === 'eteint'"></div>
+  <h4 [ngStyle]="{color: getColor()}">Appareil :{{appareilName}} --- Status : {{ getStatus() }}</h4>
+  <!-- on fait un binding twoWare avec ngModel-->
+  <input type="text" class="form-control" [(ngModel)]="appareilName">
+  <button class="b tn btn-success"
+          [disabled] ="appareilStatus === 'allumee'"
+          (click) ="onSwitchOn()" > alumer </button>
+  <button class="b tn btn-danger"
+          [disabled] ="appareilStatus === 'eteint'"
+          (click) ="onSwitchOff()" >Eteindre</button>
+</li>
+
