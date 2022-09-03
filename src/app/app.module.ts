@@ -12,14 +12,23 @@ import { AuthComponent } from './auth/auth.component';
 import { AppreilViewComponent } from './appreil-view/appreil-view.component'; //importation du service
 import { RouterModule,Routes} from "@angular/router";
 import { AuthService } from "./services/auth.service";
+import { SingleAppareilComponent } from './single-appareil/single-appareil.component';
+import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
+import { AuthGuard } from "./services/auth-guard.service";
 
 //creation des differentes de l'application
 //on indique le path et le component de la route
 //mais pas ncore integrer dans l'app
 const appRoutes: Routes=[
-  {path:'appareils',component: AppreilViewComponent },
+  //integration du canActivate pour surveiller la route via le service AuthGuard
+  {path:'appareils', canActivate: [AuthGuard], component: AppreilViewComponent },
+  {path:'appareils/:id', canActivate: [AuthGuard], component: SingleAppareilComponent },
   {path:'auth',component: AuthComponent},
-  {path:'',component: AppreilViewComponent}
+  {path:'',component: AppreilViewComponent},
+  {path:'not-found',component: FourOhFourComponent},
+  {path:'**', redirectTo: '/not-found'},// configuration d'une redirection en cas de route introuvable vers le path /not-found
+
+
 
 
 ];
@@ -30,7 +39,9 @@ const appRoutes: Routes=[
     MonPremierComponent,
     AppareilComponent,
     AuthComponent,
-    AppreilViewComponent
+    AppreilViewComponent,
+    SingleAppareilComponent,
+    FourOhFourComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +52,8 @@ const appRoutes: Routes=[
   providers: [
     //on injecte le service creer
     AppareilService,
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

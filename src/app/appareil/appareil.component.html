@@ -8,6 +8,9 @@
   <h4 [ngStyle]="{color: getColor()}">Appareil :{{appareilName}} --- Status : {{ getStatus() }}</h4>
   <!-- on fait un binding twoWare avec ngModel-->
   <input type="text" class="form-control" [(ngModel)]="appareilName">
+  <!-- utilisation du property binding avec routerLink pour passer le parametre id
+    dans l'url-->
+  <a [routerLink]="[id]">Detail</a>
   <button class="b tn btn-success"
           [disabled] ="appareilStatus === 'allumee'"
           (click) ="onSwitchOn()" > alumer </button>

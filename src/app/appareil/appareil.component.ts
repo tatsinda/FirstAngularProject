@@ -12,6 +12,7 @@ export class AppareilComponent implements OnInit {
   @Input() appareilName: string=''; //on cree une propriete personalisee et avec ce decorateur Input on recupere la valeur de la variable de facon dinamique depuis le componnent parent
   @Input() appareilStatus: string='' ;
   @Input() indexofAppareil: number=0;
+  @Input() id: number= 0;
   constructor(private appareilService : AppareilService) { }
 
   ngOnInit(): void {
