@@ -15,6 +15,7 @@ import { AuthService } from "./services/auth.service";
 import { SingleAppareilComponent } from './single-appareil/single-appareil.component';
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { AuthGuard } from "./services/auth-guard.service";
+import { EditAppareilComponent } from './edit-appareil/edit-appareil.component';
 //creation des differentes de l'application
 //on indique le path et le component de la route
 //mais pas ncore integrer dans l'app
@@ -22,6 +23,7 @@ const appRoutes: Routes=[
   //integration du canActivate pour surveiller la route via le service AuthGuard
   {path:'appareils', canActivate: [AuthGuard], component: AppreilViewComponent },
   {path:'appareils/:id', canActivate: [AuthGuard], component: SingleAppareilComponent },
+  {path:'edit', canActivate: [AuthGuard], component: EditAppareilComponent},
   {path:'auth',component: AuthComponent},
   {path:'',component: AppreilViewComponent},
   {path:'not-found',component: FourOhFourComponent},
@@ -40,7 +42,8 @@ const appRoutes: Routes=[
     AuthComponent,
     AppreilViewComponent,
     SingleAppareilComponent,
-    FourOhFourComponent
+    FourOhFourComponent,
+    EditAppareilComponent
   ],
   imports: [
     BrowserModule,

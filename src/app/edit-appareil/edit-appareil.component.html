@@ -1,0 +1,32 @@
+<!-- component permettant de creer un formulaire d'edition d'appareil -->
+<div class="row">
+    <div class="col-sm8 col-sm-offset-2">
+        <!-- utilisation de la directive ngSubmit pour recuperer l'evenemt de click sur le boutton -->
+        <!-- on creer ausi une reference ngForm qui representera le type du formulaire. Afin de le manipuler dan le Ts -->
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <div class="form-group">
+                <label for="name">
+                    Nom de l'appareil
+                </label>
+                <!-- utilisation des proprietees name et ngModel pour connecter l'input du formulaire a Angular -->
+                <input type="text" id="name" class="form-control" name="name" ngModel required>
+            </div>
+            <div class="form-group">
+                <label for="status">
+                    Etat de l'appareil
+                </label>
+                 <!-- utilisation des proprietees name et ngModel pour connecter le selet du formulaire a Angular, la valeur de ngModel donne une valeur par defaut au champs -->
+                <select  id="status" class="form-control" name="status" [ngModel]="defaultOnOff" >
+                    <option value="allumee">
+                        Allumee
+                    </option>
+                    <option value="eteint">
+                        Eteint
+                    </option>
+                </select>
+            </div>
+            <!-- la valeur de la propriete disabled, pour desactiver le formulaire tant qu'il n'est pas valide -->
+            <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Enregistrer</button>
+        </form>
+    </div>
+</div>

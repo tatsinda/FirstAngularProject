@@ -1,6 +1,7 @@
 //creation de la garde d'authentifcation pour la veridication des route du User
 
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+///import { Observable } from 'rxjs';
 import { Observable } from 'rxjs';
 import {Injectable} from '@angular/core';
 import { AuthService } from "../services/auth.service"; //importation du service Auth

@@ -69,4 +69,20 @@ export class AppareilService{
 
       }
 
+    addAppareil(name: string, status: string)
+    {
+      const appareilObject={
+        id:0,
+        name: '',
+        status: ''
+      };
+      appareilObject.name= name;
+      appareilObject.status= status;
+      appareilObject.id= this.appareils[(this.appareils.length - 1)].id + 1; //prochain id en fonction de l'idd du dernier element
+      
+      this.appareils.push(appareilObject); //ajout de l'objet au tableau d'appareil
+      this.emitAppareilSubject(); //on emet la subscription
+    }
+
+
 }
