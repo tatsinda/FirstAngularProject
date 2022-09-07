@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AppareilService } from '../services/appareil.service'; //importation du service
 
 @Component({
@@ -38,7 +39,7 @@ export class AppreilViewComponent implements OnInit {
       ];*/
 
       appareils: any;//type any pour n'importe quelle type de valeur
-
+      
      /* appareilOne= "Machine a laver";
       appareilTwo= "Televicion";
       appareilThree = "Ordinateur";*/
@@ -46,6 +47,7 @@ export class AppreilViewComponent implements OnInit {
          isAuth = false;//variable glonale
           //methode executee au demarrage du component
           //on integre le service dans le component par instanciation afin de l'user
+          appareilSubscription!: Subscription; //pour acceder a la variable avec la porte private
           constructor(private appareilService:AppareilService)
           {
             //methode qui s'execute apres un nbre de seconde defenie
@@ -58,7 +60,16 @@ export class AppreilViewComponent implements OnInit {
           //methode executer apres execution du contructeur pour recuperer les donnees du service
           ngOnInit()
           {
-            this.appareils=this.appareilService.appareils; //recuperation des donnee du service
+            //on ne peut plus acceder directeur a la donnee
+            //this.appareils=this.appareilService.appareils; //recuperation des donnee du service
+            
+            //on fait une subscription pour copier la valeur
+            this.appareilSubscription = this.appareilService.appareilSubject.subscribe(
+                (appareils:any[]) => {
+                  this.appareils = appareils;
+                }
+            );
+            this.appareilService.emitAppareilSubject(); //on emet la subscription
           }
 
 

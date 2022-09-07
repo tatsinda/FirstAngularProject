@@ -15,7 +15,6 @@ import { AuthService } from "./services/auth.service";
 import { SingleAppareilComponent } from './single-appareil/single-appareil.component';
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { AuthGuard } from "./services/auth-guard.service";
-
 //creation des differentes de l'application
 //on indique le path et le component de la route
 //mais pas ncore integrer dans l'app
@@ -47,7 +46,8 @@ const appRoutes: Routes=[
     BrowserModule,
     AppRoutingModule,
     FormsModule, //on charge l'import
-    RouterModule.forRoot(appRoutes) //on intergre les routes dans l'app
+    RouterModule.forRoot(appRoutes), //on intergre les routes dans l'app
+    
   ],
   providers: [
     //on injecte le service creer
